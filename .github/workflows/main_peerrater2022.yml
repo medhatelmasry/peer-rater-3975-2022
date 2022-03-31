@@ -8,7 +8,9 @@ on:
     branches:
       - main
   workflow_dispatch:
-
+defaults:
+ run:
+  working-directory: ./app
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -25,12 +27,11 @@ jobs:
         id: check_files
         uses: andstor/file-existence-action@v1
         with:
-          files: 'composer.json'
-
+          files: 'web/composer.json'
       - name: Run composer install if composer.json exists
         if: steps.check_files.outputs.files_exists == 'true'
         run: composer validate --no-check-publish && composer install --prefer-dist --no-progress
-
+        working-directory: ./web
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v2
         with:
