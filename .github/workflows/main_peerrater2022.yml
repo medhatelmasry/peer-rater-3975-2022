@@ -18,6 +18,8 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
+      - name: Copy the Readmes
+        run: mv laravel.deployment .deployment
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
