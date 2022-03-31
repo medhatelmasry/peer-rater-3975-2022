@@ -18,19 +18,21 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: rename .deployment file for laravel
-        run: |
-         ls; mv ./laravel.deployment ./.deployment
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
           php-version: '8.0'
+          
       - name: copy file
-        uses: canastro/copy-file-action@master
-        with:
-          source: "../laravel.deployment"
-          target: "../.deployment"
-
+        #uses: canastro/copy-file-action@master
+        #with:
+          #source: "../laravel.deployment"
+          #target: "../.deployment"
+        run: |
+          ls
+          laravel.deployment .deployment
+          ls
+          
       - name: Check if composer.json exists
         id: check_files
         uses: andstor/file-existence-action@v1
