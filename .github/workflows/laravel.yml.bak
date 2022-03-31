@@ -18,6 +18,12 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
+      
+      - name: copy file
+        uses: canastro/copy-file-action@master
+        with:
+          source: "../laravel.deployment"
+          target: "../.deployment"
 
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
